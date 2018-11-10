@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import HeaderMainPageComponent from './HeaderMainPageComponent/headerMainPageComponent';
+import MediumPageContentContainerComponent from './MediumPageContentContainerComponent/mediumPageContentContainerComponent';
+import NavigationBarComponent from './NavigationBarComponent/navigationBarComponent';
+import ModalBoxComponent from './ModalBoxComponent/modalBoxComponent';
+import StepNavigationBarComponent from './StepNavigationBarComponent/stepNavigationBarComponent';
+
+import { connect } from 'react-redux';
+
 class App extends Component {
+
   render() {
+
+    const { addItemModalBoxOpenFlag } = this.props;
+    const { addItemModalBoxMetaDataInfoObj } = this.props;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <HeaderMainPageComponent />
+        { addItemModalBoxOpenFlag && <ModalBoxComponent modalBoxMetaDataInfo = { addItemModalBoxMetaDataInfoObj }/>}
+        <NavigationBarComponent />
+        <MediumPageContentContainerComponent/>
+        <StepNavigationBarComponent />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {
+    addItemModalBoxMetaDataInfoObj : store.appReducerState.addItemModalBoxMetaDataInfoObj,
+    addItemModalBoxOpenFlag : store.appReducerState.addItemModalBoxOpenFlag,
+  }
+}
+
+export default connect(mapStateToProps)(App);

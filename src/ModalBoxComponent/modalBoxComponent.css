@@ -1,0 +1,79 @@
+.modal-box-screen-wrapper{
+    position:fixed;
+    top:0%;
+    left:0%;
+    height:100%;
+    width:100%;
+    background:#444444;
+    opacity: 0.8;
+    z-index:3;
+    overflow:auto;
+}
+
+.modal-box-container{
+    position: absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-50%, 0%);
+    width:40%;
+    box-sizing: border-box;
+    z-index:4;
+    animation-name:'modal-box-animation';
+    animation-duration:0.5s
+}
+
+.modal-header, .modal-box-footer{
+    background: navy;
+    padding:20px;
+    text-align:center;
+    font-size: 20px;
+    color:#dddddd;
+    position:relative;
+}
+
+.modal-header{
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-box-footer{
+    min-height: 40px;
+    border-radius: 0 0 8px 8px;
+}
+
+.modal-box-content{
+    background:#dddddd;
+    padding:20px;
+    text-align:center;
+    font-size: 20px;
+    color:#444444
+}
+
+.modal-box-content-attribute-item, .modal-box-content-attribute-item > input[type="text"]{
+    padding:10px 15px;
+    border-radius:4px;
+    border:none;
+}
+
+.modal-submit-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    right:5%;
+    padding:10px;
+    background:#bbbbbb;
+    border:none;
+    border-radius:4px;
+    width:90px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.modal-submit-btn:hover{
+    background:#aaaaaa
+}
+
+@keyframes modal-box-animation{
+    from {top: 0%}
+    to {top: 10%}
+}
+

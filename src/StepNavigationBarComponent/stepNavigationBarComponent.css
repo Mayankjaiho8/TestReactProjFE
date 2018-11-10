@@ -1,0 +1,30 @@
+.step-navigation-bar-container{
+    padding:10px;
+    background: #dddddd;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.step-navigation-next-btn, .step-navigation-prev-btn{
+    background:#cf750c;
+    padding:10px;
+    text-align:center;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    min-width:100px;
+}
+
+.step-navigation-next-btn:hover, .step-navigation-prev-btn:hover{
+    background:#f59425;
+}
+
+.step-navigation-next-btn{
+    float:right;
+    margin-right:20px;
+}
+
+.step-navigation-prev-btn{
+    float:left;
+    margin-left:20px;
+}

@@ -6,9 +6,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.close-btn{
+  position:absolute;
+  top:0%;
+  right:0%;
+  opacity:0.8;
+  padding:0 4px;
+  background:none;
+  color:#dddddd;
+  border:none;
+  cursor:pointer;
+  outline:none;
+  font-size:25px
+}
+
+.close-btn:hover{
+  box-shadow:0 0 1px black;
+  color: white;
+  background:#0000aa
 }

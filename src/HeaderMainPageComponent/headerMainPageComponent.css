@@ -1,0 +1,44 @@
+.header-main-page{
+    background: navy;
+    min-height:60px;
+}
+
+.header-main-page > .logo-header-container{
+    height:60px;
+    float:left;
+    margin-left:10px;
+    text-align:center;
+    font-weight:bold;
+    color:#bbbbbb;
+    padding:10px 10px;
+    content:"";
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.logo-header-container:hover{
+    box-shadow:0.5px 0 0.5px #222222
+}
+
+.button-container{
+    float:right;
+    height:60px;
+}
+
+.button-container > button{
+    outline:none;
+    border:none;
+    padding:4px;
+    height:100%;
+    cursor:pointer;
+    background:none;
+    transition: 0.1s ease-in;
+    margin: 0 2px;
+    color: #dddddd
+}
+
+.button-container > button:hover{
+    background: #bbbbbb;
+    color:#222222
+}
+
