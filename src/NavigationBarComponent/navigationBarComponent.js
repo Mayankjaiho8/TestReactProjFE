@@ -4,6 +4,7 @@ import './navigationBarComponent.css';
 import NavigationBarBoxComponent from './../NavigationBarBoxComponent/navigationBarBoxComponent';
 
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const NavigationBarComponent = (props) => {
 
@@ -14,10 +15,11 @@ const NavigationBarComponent = (props) => {
                           content = { navigationBarBoxObj.content }
                           status = { navigationBarBoxObj.status}/>
     )
+    
     return (
-        <div className = "navigation-bar-container">
-            { navigationBarBoxComponentArr }
-        </div>
+            <div className = "navigation-bar-container">
+                { navigationBarBoxComponentArr }
+            </div>
     )
 }
 
