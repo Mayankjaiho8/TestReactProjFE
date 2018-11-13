@@ -1,14 +1,15 @@
-import { mediumPageContentObjArr} from './../MockUpData/mockupData';
+//import { mediumPageContentObjArr} from './../MockUpData/mockupData';
+import axios from 'axios';
 
 const initialState = {
-    mediumPageContentObjArr,
+    mediumPageContentObjArr:[],
     currentContentBoxCounter:0,
 }
 
 const mediumMainPageReducer = (state = initialState, action) => {
 
     let { mediumPageContentObjArr, currentContentBoxCounter } = state;
-
+    //console.log('Is this RETRIEVE_USER_ITEM -> ',action.type);
     switch(action.type) {
         case 'ADD_ITEM_MODAL_BOX':
             const itemObjToBeAdded = action.payload;
@@ -42,6 +43,13 @@ const mediumMainPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentContentBoxCounter
+            }
+        case 'RETRIEVE_USER_ITEM' :
+            const itemArrFromServer = action.payload;
+            console.log('itemArrFromServer inside mediumMainPageReducer -> ', itemArrFromServer);
+            return {
+                ...state,
+                mediumPageContentObjArr : itemArrFromServer
             }
         default : 
             return {...state}       

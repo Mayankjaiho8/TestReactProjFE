@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './mediumMainPageComponent.css'
 
 import MediumPageContentBoxComponent from './../MediumPageContentBoxComponent/mediumPageContentBoxComponent'
+import { getUserItemsFromServer } from './../Store/ActionCreators/action';
 
 import { connect } from 'react-redux'
 
@@ -15,6 +16,12 @@ class MediumMainPageComponent extends Component{
         this.isLastBoxOfContentBoxArr = this.isLastBoxOfContentBoxArr.bind(this);
         this.isFirstBoxOfContentBoxArr = this.isFirstBoxOfContentBoxArr.bind(this);
         this.redirect = this.redirect.bind(this);
+    }
+
+    componentDidMount(){
+        const { retrieveUserItems } = this.props;
+
+        retrieveUserItems();
     }
 
     updateMediumPageContentComponentArr(mediumPageContentComponentArr){
@@ -102,7 +109,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         openAddItemModal: () => dispatch({type:'OPEN_ADD_ITEM_MODAL_BOX'}),
         prevItemNavigationButtonHandler: () => dispatch({type:'PREV_ITEM_NAV_BTN_CLICKED'}),
-        nextItemNavigationButtonHandler: () => dispatch({type:'NEXT_ITEM_NAV_BTN_CLICKED'})
+        nextItemNavigationButtonHandler: () => dispatch({type:'NEXT_ITEM_NAV_BTN_CLICKED'}),
+        retrieveUserItems : () => dispatch(getUserItemsFromServer(1)),
+                                    
     }
 }
 
