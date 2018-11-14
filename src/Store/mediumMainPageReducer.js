@@ -46,7 +46,7 @@ const mediumMainPageReducer = (state = initialState, action) => {
             }
         case 'RETRIEVE_USER_ITEM' :
             const itemArrFromServer = action.payload;
-            console.log('itemArrFromServer inside mediumMainPageReducer -> ', itemArrFromServer);
+            //console.log('itemArrFromServer inside mediumMainPageReducer -> ', itemArrFromServer);
             return {
                 ...state,
                 mediumPageContentObjArr : itemArrFromServer
