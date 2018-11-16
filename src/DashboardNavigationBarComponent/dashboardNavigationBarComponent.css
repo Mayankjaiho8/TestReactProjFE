@@ -1,0 +1,17 @@
+.dashboard-navigation-bar-container{
+    text-align:center;
+    margin:10px 0;
+    background:#dddddd
+}
+
+.dashboard-button{
+    padding:5px 10px;
+    display:inline-block;
+    text-decoration:none;
+    color:#444444;
+    margin: 0 5px
+}
+
+.dashboard-button:hover{
+    background:lightseagreen;
+}

@@ -16,6 +16,7 @@
     width:25%;
     padding:0 10px;
     box-sizing:border-box;
+    content:"";
 }
 
 .col-25 > label{
@@ -32,4 +33,21 @@ input[type="text"], select{
     border:2px #555 solid;
     padding:5px;
     font-size:16px;
+}
+
+.search-part-container{
+    margin-top:30px;
+}
+
+.submit-btn{
+    border:none;
+    padding:15px;
+    background:#0c3b5a;
+    cursor: pointer;
+    margin:15px 0;
+    color:#dddddd;
+}
+.submit-btn:hover{
+    background:#6baad4;
+    color:#dddddd;
 }

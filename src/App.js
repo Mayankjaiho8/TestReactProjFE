@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 
 import HeaderMainPageComponent from './HeaderMainPageComponent/headerMainPageComponent';
-import MediumPageContentContainerComponent from './MediumPageContentContainerComponent/mediumPageContentContainerComponent';
-import NavigationBarComponent from './NavigationBarComponent/navigationBarComponent';
+
+import DashboardNavigationBarComponent from './DashboardNavigationBarComponent/dashboardNavigationBarComponent';
 import ModalBoxComponent from './ModalBoxComponent/modalBoxComponent';
 import StepNavigationBarComponent from './StepNavigationBarComponent/stepNavigationBarComponent';
+import AddNewPartComponent from './AddNewPartComponent/addNewPartComponent';
+import QueueComponent from './QueueComponent/queueComponent';
+
+import {BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -20,8 +24,13 @@ class App extends Component {
       <div>
         <HeaderMainPageComponent />
         { addItemModalBoxOpenFlag && <ModalBoxComponent modalBoxMetaDataInfo = { addItemModalBoxMetaDataInfoObj }/>}
-        <NavigationBarComponent />
-        <MediumPageContentContainerComponent/>
+        <Router>
+            <React.Fragment>
+              <DashboardNavigationBarComponent />
+              <Route path="/" exact render={ () => <AddNewPartComponent/>}/>
+              <Route path="/queue" render={ () => <QueueComponent/>}/>
+            </React.Fragment>
+        </Router>
         <StepNavigationBarComponent />
       </div>
     );

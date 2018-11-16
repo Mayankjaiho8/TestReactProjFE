@@ -1,5 +1,3 @@
-//import { mediumPageContentObjArr} from './../MockUpData/mockupData';
-import axios from 'axios';
 
 const initialState = {
     mediumPageContentObjArr:[],

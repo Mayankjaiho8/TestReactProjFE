@@ -18,7 +18,7 @@ class MediumMainPageComponent extends Component{
         this.redirect = this.redirect.bind(this);
     }
 
-    componentDidMount(){
+    componenDidMount(){
         const { retrieveUserItems } = this.props;
 
         retrieveUserItems();
@@ -26,7 +26,6 @@ class MediumMainPageComponent extends Component{
 
     updateMediumPageContentComponentArr(mediumPageContentComponentArr){
         const { mediumPageContentObjArr, currentContentBoxCounter } = this.props;
-
         let endCounterIdx = (currentContentBoxCounter + 3) < mediumPageContentObjArr.length ? 
                             (currentContentBoxCounter + 3) : mediumPageContentObjArr.length - 1;
 
@@ -74,7 +73,7 @@ class MediumMainPageComponent extends Component{
         const { openAddItemModal, 
                 nextItemNavigationButtonHandler,
                 prevItemNavigationButtonHandler } = this.props;
-
+            
         let mediumPageContentComponentArr = [];
         this.updateMediumPageContentComponentArr(mediumPageContentComponentArr)
 

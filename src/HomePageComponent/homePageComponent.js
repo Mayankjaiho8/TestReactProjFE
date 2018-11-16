@@ -11,44 +11,61 @@ const HomePageComponent = props => {
         <div className="form-container">
             <div className="row">
                 <div className="col-25">
-                    <label for="firstname">First Name :</label>
+                    <label htmlFor="partnumbertext">Part Number :</label>
                 </div>
                 <div className="col-75">
-                    <input type="text" name="" value="" id = "firstname" placeholder="First Name"/>
+                    <input type="text" name="partNumber" id = "partnumbertext" placeholder="Part Number"/>
                 </div>
             </div>
             <div className="row">
                 <div className="col-25">
-                    <label for="lastname">Last Name :</label>
+                    <label htmlFor="boeinspecpartnumbertext">Boeing Spec Part Number :</label>
                 </div>
                 <div className="col-75">
-                    <input type="text" name="" value="" id = "lastname" placeholder="Last Name" />
+                    <input type="text" id = "boeinspecpartnumbertext" name="boeinSpecPartNumberName" placeholder="Boeing Spec Part Number" />
                 </div>
             </div>
             <div className="row">
                 <div className="col-25">
-                    <label style={{'float':'right'}}> Gender :</label>
+                    <label style={{'float':'right'}}> Part Status :</label>
                 </div>
                 <div className="col-75">
-                    <label>Male :</label>
-                    <input type="radio" name="gender" value="male" />
-                    <label>Female :</label>
-                    <input type="radio" name="gender" value="Femal" />
+                    <label>Repairable :</label>
+                    <input type="radio" name="partstatus" value="repairable" />
+                    <label>Rotable :</label>
+                    <input type="radio" name="partstatus" value="rotable" />
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-25">
-                    <label>Hobbies : </label>
+                    <label>Part Class : </label>
                 </div>
                 <div className="col-75">
-                    <select id = "hobbies" name="hobbies">
-                        <option value="swimming">Swimming</option>
-                        <option value="fishing">Fishing</option>
-                        <option value="travelling">Travelling</option>
-                        <option value="sports">Sports</option>
-                        <option value="coding">Coding</option>
+                    <select id = "partclassselect" name="partclass">
+                        <option>Select</option>
+                        <option value="Boeing Provided(BP)">Boeing Provided (BP)</option>
+                        <option value="cfbm">CFBM</option>
+                        <option value="cfcm">CFCM</option>
+                        <option value="out of scope">Out Of Scope</option>
                     </select>
+                    <div>
+                        <button className="submit-btn">Add New Part</button>
+                    </div>
+                </div>
+            </div>
+
+            <div className="search-part-container">
+                <div className="row">
+                    <div className="col-25">
+                        <label>Enter Search Part Number :</label>
+                    </div>
+                    <div className="col-75">
+                        <input type="text" name="searchparttext" placeholder="Enter Part Number"/>
+                        <div>
+                            <button className="submit-btn">Search</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
