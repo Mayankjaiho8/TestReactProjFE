@@ -1,0 +1,40 @@
+.task-part-page-container{
+    margin:0 auto;
+    width:80%;
+    background:grey;
+    padding:10px;
+    box-sizing: border-box;
+}
+
+.task-part-page-container > h2{
+    text-align:center;
+}
+
+.task-detail-container{
+    border:1px solid black
+}
+
+.part-detail-container{
+    border:1px solid black;
+    margin-top:4px;
+}
+
+th, td {
+    border-bottom:1px solid black;
+    padding:4px 8px;
+    text-align:center;
+}
+
+table{
+    border-collapse:collapse;
+    margin:1px auto;
+}
+
+table > tr:nth-child(odd){
+    background:white;
+}
+
+.part-supplier-container{
+    border:1px solid black;
+    margin-top: 4px;
+}

@@ -8,6 +8,7 @@ import ModalBoxComponent from './ModalBoxComponent/modalBoxComponent';
 import StepNavigationBarComponent from './StepNavigationBarComponent/stepNavigationBarComponent';
 import AddNewPartComponent from './AddNewPartComponent/addNewPartComponent';
 import QueueComponent from './QueueComponent/queueComponent';
+import TaskPartComponent from './TaskPartComponent/taskPartComponent';
 
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -28,7 +29,8 @@ class App extends Component {
             <React.Fragment>
               <DashboardNavigationBarComponent />
               <Route path="/" exact render={ () => <AddNewPartComponent/>}/>
-              <Route path="/queue" render={ () => <QueueComponent/>}/>
+              <Route path="/queue" render={ () => <QueueComponent/> }/>
+              <Route path="/task" render={ () => <TaskPartComponent /> }/>
             </React.Fragment>
         </Router>
         <StepNavigationBarComponent />

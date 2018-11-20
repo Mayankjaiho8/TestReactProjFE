@@ -3,6 +3,7 @@ import { addItemModalBoxMetaDataInfoObj } from './../MockUpData/mockupData';
 const initialAppState = {
     addItemModalBoxMetaDataInfoObj,
     addItemModalBoxOpenFlag:false,
+    userRole:'validator',
 }
 
 const appReducer = (state=initialAppState, action) =>{
