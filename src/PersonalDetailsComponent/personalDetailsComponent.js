@@ -8,11 +8,11 @@ const PersonalDetailsComponent = props => {
 
     redirect(currentStepId, history);
     
-    var webSocket = new WebSocket("ws://localhost:8080/socket/rest/server-end-point");
+    var webSocket = new WebSocket("ws://localhost:8080/socket/serverendpoint");
 
     webSocket.onopen = processOpen();
     //webSocket.onclose = processClose(webSocket);
-    //webSocket.onmessage = processMessage(webSocket);
+    webSocket.onmessage = (message) => {recieveMessage(message)}
 
     return(
         <div id = "personalDetail">
@@ -30,9 +30,17 @@ const PersonalDetailsComponent = props => {
     )
 }
 
-const sendMessage = (webSocket, message) => {
-    console.log('sending message to server ' + message);
-    webSocket.send(message);
+
+const recieveMessage = message => {
+    console.log('response from server ', message)
+
+    let responseArea = window.document.getElementById('responseArea');
+
+    let oldValue = responseArea.innerHTML;
+
+    let newValue = oldValue + ' ' + message.data + '<br/>';
+
+    responseArea.innerHTML = newValue;
 }
 
 const processOpen = () => {
@@ -62,17 +70,17 @@ const processClose = webSocket => {
 
     responseArea.innerHTML = newValue;
     console.log('processing Close .... ');
+    webSocket.close();
 }
 
 const processMessage = websocket => {
-    let message = window.document.getElementsByName('socketSender').value;
+    let message = window.document.getElementsByName('socketSender')[0].value;
 
     if(message === 'close'){
         websocket.close();
         return;
     }
-        
-    sendMessage(websocket, message);
+
 
     let responseArea = window.document.getElementById('responseArea');
 
@@ -83,6 +91,7 @@ const processMessage = websocket => {
     responseArea.innerHTML = newValue;
     
     console.log('processing Message .... ');
+    websocket.send(message);
 }
 
 const redirect = (currentStepId, history) => {
