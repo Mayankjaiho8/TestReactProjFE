@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './taskPartComponent.css';
 
-import { getPartBaseSupplierDetailFromServer, updatePartCustomerDataToServer } from '../Store/ActionCreators/action'
+import { getPartBaseSupplierDetailFromServer } from '../Store/ActionCreators/action'
 import MediumPageContentContainerComponent from '../MediumPageContentContainerComponent/mediumPageContentContainerComponent';
 
 

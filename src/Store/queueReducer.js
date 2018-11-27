@@ -8,6 +8,7 @@ const initialState = {
             "taskTitle": "PN :partName1Part Validation for Customer Air India"
         }*/
     ],
+    ERROR_STR : '',
 }
 
 const queueReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ const queueReducer = (state = initialState, action) => {
             return {
                 ...state,
                 queueTasksObjArr: action.payload,
+            }
+        case 'ERR_IN_SERVER_RESPONSE':
+            const ERROR_STR = action.payload;
+            return {
+                ...state,
+                ERROR_STR,
             }
         default :
             return state;

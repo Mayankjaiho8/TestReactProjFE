@@ -17,6 +17,11 @@ const stepNavigationBarReducer = (state = initialState, action) =>{
                 ...state,
                 currentStepId
             }
+        case 'ADD_NEW_PART_CUSTOMER_SUCCEEDED' : 
+            return {
+                ...state,
+                currentStepId : state.currentStepId + 1,
+            }
         default :
             return {...state}
     }

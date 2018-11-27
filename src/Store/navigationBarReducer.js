@@ -8,7 +8,7 @@ const initialState = {
 
 const navigationBarReducer = (state = initialState, action) =>{
 
-    const navigationBarBoxObjArr =[...state.navigationBarBoxObjArr] ;
+    const navigationBarBoxObjArr =[...state.navigationBarBoxObjArr];
 
     let sourceIndex, targetIndex;
 
@@ -22,6 +22,14 @@ const navigationBarReducer = (state = initialState, action) =>{
             navigationBarBoxObjArr[targetIndex-1].status = 'current';
             navigationBarBoxObjArr[sourceIndex-1].status = 'completed';
             
+            return {
+                ...state,
+                navigationBarBoxObjArr
+            }
+        case 'ADD_NEW_PART_CUSTOMER_SUCCEEDED' :
+            navigationBarBoxObjArr[1].status = 'current';        
+            navigationBarBoxObjArr[0].status = 'completed';
+
             return {
                 ...state,
                 navigationBarBoxObjArr

@@ -17,13 +17,14 @@ class QueueComponent extends Component {
     render(){
         //const url = this.props.match.url;
         const queueTasksObjArr = [...this.props.queueTasksObjArr];
+        const { ERROR_STR } = this.props;
         const queueTasksComponentArr  = queueTasksObjArr.map(taskObj => {
             return <QueueTaskComponent key={ taskObj.taskTitle } taskObj={taskObj}  />
         })
 
         return (
                 <MediumPageContentContainerComponent>
-                    { queueTasksComponentArr } 
+                    { ERROR_STR ? ERROR_STR : queueTasksComponentArr } 
                 </MediumPageContentContainerComponent>
             )
         }
@@ -34,6 +35,7 @@ const mapStateToProps = (state) => {
     return {
         userRole: state.appReducerState.userRole,
         queueTasksObjArr: state.queueReducerState.queueTasksObjArr,
+        ERROR_STR : state.queueReducerState.ERROR_STR,
     }
 }
 

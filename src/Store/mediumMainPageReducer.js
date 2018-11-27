@@ -2,6 +2,7 @@
 const initialState = {
     mediumPageContentObjArr:[],
     currentContentBoxCounter:0,
+    customerListArr: []
 }
 
 const mediumMainPageReducer = (state = initialState, action) => {
@@ -48,6 +49,13 @@ const mediumMainPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 mediumPageContentObjArr : itemArrFromServer
+            }
+        case 'CUSTOMER_LIST_FOR_CURRENT_PART_BASE_ID_FETCHED' :
+            const customerListArr = action.payload;
+
+            return {
+                ...state,
+                customerListArr,
             }
         default : 
             return {...state}       

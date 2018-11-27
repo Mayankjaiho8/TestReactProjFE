@@ -4,7 +4,6 @@ import './navigationBarComponent.css';
 import NavigationBarBoxComponent from './../NavigationBarBoxComponent/navigationBarBoxComponent';
 
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const NavigationBarComponent = (props) => {
 

@@ -1,5 +1,13 @@
 import axios from 'axios'
 
+const BASE_URL = `http://localhost:8080/testreact/webapi`;
+
+const getErrorObjActionCreator = () => {
+    return {
+        type:'ERR_IN_SERVER_RESPONSE',
+        payload: 'Something went wrong. Check the console log by pressing F12.'
+    }
+}
 const getUserItemsFetchSuccess = (items) =>{
     return {
         type:'RETRIEVE_USER_ITEM',
@@ -26,7 +34,8 @@ export const getTasksObjFromServer = userRole => dispatch => {
 
     taskObjPromise
     .then((res) => res.data.tasks)
-    .then(taskObjArr => dispatch(getTaskObjActionCreator(taskObjArr)));
+    .then(taskObjArr => dispatch(getTaskObjActionCreator(taskObjArr)))
+    .catch(err => dispatch(getErrorObjActionCreator()));
 
 }
 
@@ -35,12 +44,13 @@ const getPartBaseSupplierDetailActionCreator = (partDetail, partSupplier) => {
         type:'FETCHED_PART_BASE_SUPPLIER_DETAIL',
         payload:{
                 partDetail, 
-                partSupplier}
+                partSupplier
+            }
     }
 }
 
 export const getPartBaseSupplierDetailFromServer = partName => dispatch => {
-    const BASE_URL = `http://localhost:8080/testreact/webapi`
+    //const BASE_URL = `http://localhost:8080/testreact/webapi`
     const PART_BASE_URL = `${BASE_URL}/partresource/partname/${partName}`
     const PART_SUPPLIER_URL = `${BASE_URL}/partsupplierresource/partname/${partName}`
 
@@ -52,10 +62,39 @@ export const getPartBaseSupplierDetailFromServer = partName => dispatch => {
     getPartBaseSupplierPromise.then(axios.spread((partbaseResp, partsupplierResp) => {
             dispatch(getPartBaseSupplierDetailActionCreator(partbaseResp.data, partsupplierResp.data));
     }))
-                        
 
-    /*getPartBaseSupplierPromise
-    .then(res => res.data)
-    .then(partDetail => dispatch(getPartDetailActionCreator(partDetail)))
-    .catch(err =>  err)*/
 }
+
+export const AddNewPartBaseCustomerToServer = (submittedAddNewPartFormObj, submittedAddComponentFormObj) => dispatch => {
+        
+    const ADD_PART_BASE_CUSTOMER_URL = `${BASE_URL}/partresource`;
+    
+    const partBase = submittedAddNewPartFormObj;
+    partBase.partCustomer = submittedAddComponentFormObj;
+
+    let addPartBaseCustomerPromise = axios.post(ADD_PART_BASE_CUSTOMER_URL, partBase);
+
+    addPartBaseCustomerPromise
+    .then(response => response.data)
+    .then(response => dispatch({type:'ADD_NEW_PART_CUSTOMER_SUCCEEDED', payload:response}))
+    .catch(err => dispatch(getErrorObjActionCreator()))
+
+    }
+
+    const getPartCustomerListActionCreator = customerListArr => {
+        return {
+            type:'CUSTOMER_LIST_FOR_CURRENT_PART_BASE_ID_FETCHED',
+            payload : customerListArr,
+        }
+    }
+    export const getCustomerListForPartBaseIdFromServer = currentPartBaseId => dispatch => {
+
+        const GET_PART_CUSTOMERS_URL = `${BASE_URL}/partresource/partbase/${currentPartBaseId}/partcustomer`;
+        
+        let getPartCustomerForPartBaseIdPromise = axios.get(GET_PART_CUSTOMERS_URL);
+
+        getPartCustomerForPartBaseIdPromise
+        .then(response => response.data)
+        .then(response => dispatch(getPartCustomerListActionCreator(response.partCustomerList)))
+        .catch(err => err)
+    }

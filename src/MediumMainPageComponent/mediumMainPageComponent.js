@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './mediumMainPageComponent.css'
 
 import MediumPageContentBoxComponent from './../MediumPageContentBoxComponent/mediumPageContentBoxComponent'
-import { getUserItemsFromServer } from './../Store/ActionCreators/action';
+import { getCustomerListForPartBaseIdFromServer } from './../Store/ActionCreators/action';
 
 import { connect } from 'react-redux'
 
@@ -18,24 +18,52 @@ class MediumMainPageComponent extends Component{
         this.redirect = this.redirect.bind(this);
     }
 
-    componenDidMount(){
-        const { retrieveUserItems } = this.props;
-
-        retrieveUserItems();
+    componentDidMount(){
+        const { retrievePartCustomers } = this.props;
+        
+        retrievePartCustomers(this.props.currentPartBaseId);
     }
 
-    updateMediumPageContentComponentArr(mediumPageContentComponentArr){
-        const { mediumPageContentObjArr, currentContentBoxCounter } = this.props;
-        let endCounterIdx = (currentContentBoxCounter + 3) < mediumPageContentObjArr.length ? 
-                            (currentContentBoxCounter + 3) : mediumPageContentObjArr.length - 1;
+    updateMediumPageContentComponentArr(mediumPageContentComponentArr, mediumPageContentMetaData){
+        
+        const { currentContentBoxCounter, customerListArr } = this.props;
+        let currentMediumPageContentBoxComponent;
 
+        let endCounterIdx = (currentContentBoxCounter + 3) < customerListArr.length ? 
+                            (currentContentBoxCounter + 3) : customerListArr.length - 1;
 
         for(let i=currentContentBoxCounter; i<= endCounterIdx; i++){
-            const currentContentBox = mediumPageContentObjArr[i];
-            const currentMediumPageContentBoxComponent = <MediumPageContentBoxComponent key = {currentContentBox.id} mediumPageBoxContent = { currentContentBox } />
-            
-             mediumPageContentComponentArr.push(currentMediumPageContentBoxComponent); 
-        
+
+            const currentCustomerListObj = customerListArr[i];
+            let currentMediumPageContentObj = {};
+            currentMediumPageContentObj.id = i;
+            for(let metaProp of mediumPageContentMetaData){
+
+                switch(metaProp){
+                    case 'Customer Name':
+                        currentMediumPageContentObj[metaProp] = currentCustomerListObj['customerName'];
+                        break;
+                    case 'Model Name':
+                        currentMediumPageContentObj[metaProp] = currentCustomerListObj['modelName'];
+                        break;
+                    case 'Customer Wants Repair':
+                        currentMediumPageContentObj[metaProp] = currentCustomerListObj['customerWantsRepair'];
+                        break;
+                    case 'Price':
+                        currentMediumPageContentObj[metaProp] = currentCustomerListObj['price'];
+                        break;
+                    case 'Currency':
+                        currentMediumPageContentObj[metaProp] = currentCustomerListObj['currency'];
+                        break;
+                }
+
+                currentMediumPageContentBoxComponent = (
+                            <MediumPageContentBoxComponent key = {currentMediumPageContentObj.id }
+                                mediumPageBoxContent = { currentMediumPageContentObj } />
+                        )
+            }
+
+            mediumPageContentComponentArr.push(currentMediumPageContentBoxComponent); 
         }
     }
 
@@ -66,22 +94,28 @@ class MediumMainPageComponent extends Component{
                 break;
             case 4:
                 history.push('/summary')
+            default :
+
         }
     }
     render(){
 
         const { openAddItemModal, 
                 nextItemNavigationButtonHandler,
-                prevItemNavigationButtonHandler } = this.props;
+                prevItemNavigationButtonHandler,
+            } = this.props;
             
         let mediumPageContentComponentArr = [];
-        this.updateMediumPageContentComponentArr(mediumPageContentComponentArr)
-
-        this.redirect()
+        let customerListMetaDataArr = ["Customer Name", "Model Name", "Customer Wants Repair", "Price", "Currency"]
+        this.updateMediumPageContentComponentArr(mediumPageContentComponentArr, customerListMetaDataArr)
+        
+        this.redirect();
+        
         return (
                 <div className = "medium-main-page-content-box-container">
-                    { !this.isFirstBoxOfContentBoxArr() && <div className = "medium-main-page-left-arrow-container" 
-                            onClick = { () => {prevItemNavigationButtonHandler()} }></div> }
+                    { !this.isFirstBoxOfContentBoxArr() && 
+                        <div className = "medium-main-page-left-arrow-container" 
+                            onClick = { () => { prevItemNavigationButtonHandler() } }></div> }
 
                     <div className = "medium-main-page-content-box-inside-wrapper-container">
                         <button id="addItemBtn" onClick = { openAddItemModal } >Add Item</button>
@@ -101,6 +135,8 @@ const mapStateToProps = (store) => {
         mediumPageContentObjArr : store.mediumMainPageReducerState.mediumPageContentObjArr,
         currentContentBoxCounter : store.mediumMainPageReducerState.currentContentBoxCounter,
         currentStepId : store.stepNavigationBarReducerState.currentStepId,
+        currentPartBaseId : store.homeReducerState.currentPartBaseId,
+        customerListArr : store.mediumMainPageReducerState.customerListArr,
     }
 }
 
@@ -109,7 +145,7 @@ const mapDispatchToProps = (dispatch) => {
         openAddItemModal: () => dispatch({type:'OPEN_ADD_ITEM_MODAL_BOX'}),
         prevItemNavigationButtonHandler: () => dispatch({type:'PREV_ITEM_NAV_BTN_CLICKED'}),
         nextItemNavigationButtonHandler: () => dispatch({type:'NEXT_ITEM_NAV_BTN_CLICKED'}),
-        retrieveUserItems : () => dispatch(getUserItemsFromServer(1)),
+        retrievePartCustomers : (currentPartBaseId) => dispatch(getCustomerListForPartBaseIdFromServer(currentPartBaseId)),
                                     
     }
 }

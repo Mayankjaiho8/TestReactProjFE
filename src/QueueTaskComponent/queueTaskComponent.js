@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const QueueTaskComponent = props => {
     
     const { taskObj } = props;
-    const { customerName, taskTitle, partNumber } = taskObj;
+    const { taskTitle } = taskObj;
 
     const taskContainerStyleObj = {
                                     'padding':'6px 8px',
