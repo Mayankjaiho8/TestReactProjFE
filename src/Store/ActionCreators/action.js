@@ -98,3 +98,15 @@ export const AddNewPartBaseCustomerToServer = (submittedAddNewPartFormObj, submi
         .then(response => dispatch(getPartCustomerListActionCreator(response.partCustomerList)))
         .catch(err => err)
     }
+
+    const getSendNotificationActionCreator = response => {
+        return {type:'NOTIFICATION_SEND_SUCCEEDED', payload:response};
+    }
+
+
+    export const sendNotificationToServer = userId => dispatch => {
+        const SEND_NOTIFICATION_URL = `${BASE_URL}/partresource/sendnotification/${userId}`;
+        axios.get(SEND_NOTIFICATION_URL)
+        .then(response => response.data)
+        .then(response => { console.log('return response -> ', response); return dispatch(getSendNotificationActionCreator(response)) })
+    }

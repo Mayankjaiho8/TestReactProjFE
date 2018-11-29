@@ -46,6 +46,8 @@ const redirect = (currentStepId, history) => {
             break;
         case 4:
             history.push('/summary')
+            break;
+        default :
     }
 }
 

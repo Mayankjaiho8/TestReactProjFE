@@ -37,6 +37,8 @@ class ModalBoxComponent extends Component{
                 break;
             case 'item5':
                 localCurrentItemModalBoxObj.item5 = targetValue;
+                break;
+            default :
         }
 
         this.setState({

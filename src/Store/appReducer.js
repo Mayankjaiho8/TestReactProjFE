@@ -4,6 +4,7 @@ const initialAppState = {
     addItemModalBoxMetaDataInfoObj,
     addItemModalBoxOpenFlag:false,
     userRole:'validator',
+    notificationNum : 0,
 }
 
 const appReducer = (state=initialAppState, action) =>{
@@ -24,8 +25,13 @@ const appReducer = (state=initialAppState, action) =>{
             ...state,
             addItemModalBoxOpenFlag : false,
     }
+    case 'NOTIFICATION_RECIEVED': 
+        const notificationNum = action.payload;
+        return {...state,
+                notificationNum,
+            }
     default :
-        return {...state};
+        return {...state, };
     }
 }
 

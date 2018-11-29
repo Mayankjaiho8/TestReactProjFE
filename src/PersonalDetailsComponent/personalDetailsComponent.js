@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 const PersonalDetailsComponent = props => {
 
-    const { currentStepId, history } = props;
+    const { currentStepId, history, updateUserId, userId } = props;
 
-    redirect(currentStepId, history);
+    redirect(currentStepId, history, userId);
     
-    var webSocket = new WebSocket("ws://localhost:8080/socket/serverendpoint");
-
+    let webSocket = new WebSocket("ws://localhost:8080/socket/serverendpoint");
+    
     webSocket.onopen = processOpen();
     //webSocket.onclose = processClose(webSocket);
     webSocket.onmessage = (message) => {recieveMessage(message)}
@@ -20,7 +20,7 @@ const PersonalDetailsComponent = props => {
             <button onClick = { () => { processMessage(webSocket)} }>Send message</button>
             <button onClick = { () => { processClose(webSocket)} }>Close Connection message</button>
                 This is Personal Details Page
-
+            <input type="text" name="useridtext" onChange = { (e) => { updateUserId(e.target.value) }  } placeholder = "Enter UserID" />
             <div id="responseArea">
 
             </div>
@@ -46,15 +46,6 @@ const recieveMessage = message => {
 const processOpen = () => {
 
     console.log('inside processOpen window.document -> ', window.document);
-    /*let message = 'Opening connection ...... ';
-
-    let responseArea = window.document.getElementById('responseArea');
-
-    let oldValue = responseArea.innerHTML;
-
-    let newValue = oldValue + ' ' + message + '<br/>';
-
-    responseArea.innerHTML = newValue;*/
     console.log('processing Open .... ');
 }
 
@@ -94,26 +85,34 @@ const processMessage = websocket => {
     websocket.send(message);
 }
 
-const redirect = (currentStepId, history) => {
+const redirect = (currentStepId, history, userId) => {
     
 
     switch( currentStepId ){
-
         case 1:
             history.push('/');
             break;
         case 2:
-            history.push('/propertyitem');
+            history.push(`/propertyitem`);
             break;
         case 4:
-            history.push('/summary')
+            history.push(`/summary/${userId}`)
+            break;
+        default:
     }
 }
 
 const mapStateToProps = (store) => {
     return {
         currentStepId : store.stepNavigationBarReducerState.currentStepId,
+        userId : store.personalDetailReducerState.userId,
     }
 }
 
-export default connect(mapStateToProps)(PersonalDetailsComponent);
+const mapDispatchToProps = dispatch => {
+    return {
+        updateUserId : (userId) => dispatch({type:'UPDATE_USER_ID', payload:userId}),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalDetailsComponent);

@@ -55,6 +55,7 @@ class MediumMainPageComponent extends Component{
                     case 'Currency':
                         currentMediumPageContentObj[metaProp] = currentCustomerListObj['currency'];
                         break;
+                    default:
                 }
 
                 currentMediumPageContentBoxComponent = (
@@ -85,7 +86,6 @@ class MediumMainPageComponent extends Component{
         const { currentStepId, history } = this.props;
 
         switch( currentStepId ){
-
             case 1:
                 history.push('/');
                 break;
@@ -94,6 +94,7 @@ class MediumMainPageComponent extends Component{
                 break;
             case 4:
                 history.push('/summary')
+                break;
             default :
 
         }
@@ -121,7 +122,6 @@ class MediumMainPageComponent extends Component{
                         <button id="addItemBtn" onClick = { openAddItemModal } >Add Item</button>
                         { mediumPageContentComponentArr }
                     </div>
-
                     { !this.isLastBoxOfContentBoxArr() && <div className = "medium-main-page-right-arrow-container" 
                             onClick = { () => { nextItemNavigationButtonHandler() } }></div> }
                 </div>

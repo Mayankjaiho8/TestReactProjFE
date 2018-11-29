@@ -1,0 +1,17 @@
+.notification-box-container{
+    padding:5px;
+    background:#5a5ada;
+    opacity:0.8;
+    cursor: pointer;
+    position:relative;
+}
+
+.fade{
+    animation-name: 'fade-away';
+    animation-duration: 0.5s;
+}
+
+@keyframes fade-away {
+    from {display:block}
+    to {display:'none'}
+}

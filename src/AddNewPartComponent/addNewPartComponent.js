@@ -10,10 +10,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class AddNewPartComponent extends Component{
 
-    constructor(){
-        super()
-    }
-
     render(){
         
         return(
@@ -25,7 +21,7 @@ class AddNewPartComponent extends Component{
                             <Route exact path="/" component={ HomePageComponent } />
                             <Route path="/propertyitem" component={ MediumMainPageComponent } />
                             <Route path="/personaldetail" component={ PersonalDetailsComponent } />
-                            <Route path="/summary" component={ SummaryPageComponent } />
+                            <Route path="/summary/:userId" component={ SummaryPageComponent } />
                         </React.Fragment>
                     </Router>
                 </MediumPageContentContainerComponent>

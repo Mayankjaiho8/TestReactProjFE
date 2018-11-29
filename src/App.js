@@ -9,6 +9,7 @@ import StepNavigationBarComponent from './StepNavigationBarComponent/stepNavigat
 import AddNewPartComponent from './AddNewPartComponent/addNewPartComponent';
 import QueueComponent from './QueueComponent/queueComponent';
 import TaskPartComponent from './TaskPartComponent/taskPartComponent';
+import NotificationContainerComponent from './NotificationContainerComponent/notificationContainerComponent';
 
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ class App extends Component {
 
   render() {
 
-    const { addItemModalBoxOpenFlag } = this.props;
+    const { addItemModalBoxOpenFlag, notificationNum } = this.props;
     const { addItemModalBoxMetaDataInfoObj } = this.props;
 
     return (
@@ -33,7 +34,8 @@ class App extends Component {
               <Route path="/task" render={ () => <TaskPartComponent /> }/>
             </React.Fragment>
         </Router>
-        <StepNavigationBarComponent />
+        <NotificationContainerComponent />
+        <StepNavigationBarComponent/>
       </div>
     );
   }
