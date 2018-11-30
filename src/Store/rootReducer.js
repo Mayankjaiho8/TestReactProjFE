@@ -8,6 +8,7 @@ import taskReducer from './taskReducer';
 import homeReducer from './homeReducer';
 import personalDetailReducer from './personalDetailReducer';
 import summaryReducer from './summaryReducer';
+import notificationReducer from './notificationReducer';
 
 const reducer = combineReducers({
     appReducerState: appReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
     homeReducerState : homeReducer,
     personalDetailReducerState : personalDetailReducer,
     summaryReducerState : summaryReducer,
+    notificationReducerState : notificationReducer,
 })
 
 export default reducer;
