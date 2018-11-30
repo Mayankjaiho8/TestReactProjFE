@@ -10,10 +10,11 @@
 
 .fade{
     animation-name: 'fade-away';
-    animation-duration: 0.5s;
+    animation-duration: 4s;
 }
 
 @keyframes fade-away {
-    from { opacity:0.8 }
-    to { opacity:0 }
+    0% { opacity:0.8 }
+    70% { opacity:0.8 }
+    100% {opacity : 0}
 }

@@ -7,9 +7,9 @@ import AddNewPartCustomerFormComponent from './../AddNewPartCustomerFormComponen
 import './homePageComponent.css'
 
 const HomePageComponent = props => {
-    const { currentStepId, history, isAddNewPartButtonSubmittedFlag } = props;
+    const { currentStepId, history, isAddNewPartButtonSubmittedFlag, userId } = props;
 
-    redirect(currentStepId, history);
+    redirect(currentStepId, history, userId);
     return (
         <React.Fragment>
             <AddNewPartFormComponent />
@@ -34,7 +34,7 @@ const HomePageComponent = props => {
     )
 }
 
-const redirect = (currentStepId, history) => {
+const redirect = (currentStepId, history, userId) => {
     
     switch( currentStepId ){
 
@@ -45,7 +45,7 @@ const redirect = (currentStepId, history) => {
             history.push('/personaldetail');
             break;
         case 4:
-            history.push('/summary')
+            history.push(`/summary/${userId}`)
             break;
         default :
     }
@@ -55,6 +55,7 @@ const mapStateToProps = (store) => {
     return {
         currentStepId : store.stepNavigationBarReducerState.currentStepId,
         isAddNewPartButtonSubmittedFlag : store.homeReducerState.isAddNewPartButtonSubmittedFlag,
+        userId : store.personalDetailReducerState.userId,
     }
 }
 export default connect(mapStateToProps)(HomePageComponent);

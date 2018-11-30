@@ -15,7 +15,7 @@ class NotificationBoxComponent extends Component {
 
     componentDidMount(){
         setTimeout(() => { this.unMountChildHandler(this.props.notificationNum) }, 4000);
-        setTimeout(()=>{ this.addFadeClass() }, 3600);
+        //setTimeout(()=>{ this.addFadeClass() }, 3600);
     }
 
     /*fadeAwayComponent(){
@@ -44,15 +44,14 @@ class NotificationBoxComponent extends Component {
     }
 
     unMountChildHandler(notNum){
-        console.log('inside unMountChildHandler notNum -> ', notNum)
         this.props.unMountChild(notNum);
     }
 
     render(){
         const { notificationNum } = this.props;
-        console.log('notificationNum inside notificationBox render ', notificationNum);
+        
         return(
-            <div className = "notification-box-container">
+            <div className = "notification-box-container fade">
                 <button onClick = { () => { this.unMountChildHandler(this.props.notificationNum)}} className = "close-btn">&times;</button>
                 This is Notification # { notificationNum }
             </div>
