@@ -1,0 +1,8 @@
+@font-face{
+    font-family:testFont;
+    src: url(https://fonts.googleapis.com/css?family=Lato)
+}
+
+.test{
+    font-family:testFont;
+}

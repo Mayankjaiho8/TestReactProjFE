@@ -9,6 +9,7 @@ import homeReducer from './homeReducer';
 import personalDetailReducer from './personalDetailReducer';
 import summaryReducer from './summaryReducer';
 import notificationReducer from './notificationReducer';
+import loginReducer from './loginReducer';
 
 const reducer = combineReducers({
     appReducerState: appReducer,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
     personalDetailReducerState : personalDetailReducer,
     summaryReducerState : summaryReducer,
     notificationReducerState : notificationReducer,
+    loginReducerState : loginReducer,
 })
 
 export default reducer;

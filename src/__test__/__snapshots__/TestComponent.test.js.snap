@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Snapshot test the Test Component 1`] = `
+<div
+  id="testDiv"
+  onClick={[Function]}
+>
+  Hello..... This is Test Component..... Input -&gt;Input
+</div>
+`;

@@ -10,6 +10,7 @@ import AddNewPartComponent from './AddNewPartComponent/addNewPartComponent';
 import QueueComponent from './QueueComponent/queueComponent';
 import TaskPartComponent from './TaskPartComponent/taskPartComponent';
 import NotificationContainerComponent from './NotificationContainerComponent/notificationContainerComponent';
+import NotificationPageComponent from './NotificationPageComponent/notificationPageComponent';
 
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ class App extends Component {
               <Route path="/" exact render={ () => <AddNewPartComponent/>}/>
               <Route path="/queue" render={ () => <QueueComponent/> }/>
               <Route path="/task" render={ () => <TaskPartComponent /> }/>
+              <Route path="/notification" render={ () => <NotificationPageComponent /> }/>
             </React.Fragment>
         </Router>
         <NotificationContainerComponent />

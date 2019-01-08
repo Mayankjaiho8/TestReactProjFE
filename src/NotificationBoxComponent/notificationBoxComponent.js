@@ -18,23 +18,6 @@ class NotificationBoxComponent extends Component {
         //setTimeout(()=>{ this.addFadeClass() }, 3600);
     }
 
-    /*fadeAwayComponent(){
-
-        let notificationArray = window.document.querySelectorAll('.notification-box-container');
-
-        let len = notificationArray.length;
-
-        notificationArray[len -1].classList.add('fade')
-    }*/
-
-    /*closeNotificationBox(){
-        let notificationArray = window.document.querySelectorAll('.notification-box-container');
-
-        let len = notificationArray.length;
-
-        notificationArray[len -1].style.display='none';
-    }*/
-
     addFadeClass(){
         let notificationBoxDOMArr  = window.document.querySelectorAll('.notification-box-container');
 

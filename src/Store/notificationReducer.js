@@ -1,10 +1,12 @@
 const initialState = {
     notificationArr : [],
-
+    notificationList : [],
+    notificationFetchErr : '',
+    imageObj : null,
 }
 
 const notificationReducer = (state = initialState, action)=> {
-
+    
     switch(action.type){
         case 'NOTIFICATION_RECIEVED':
             const notificationNum1 = action.payload;
@@ -21,6 +23,26 @@ const notificationReducer = (state = initialState, action)=> {
                 ...state,
                 notificationArr : newNotificationArr2,
             }
+        case 'NOTIFICATION_LIST_FETCHED' :
+            const notificationList = action.payload;
+            const newNotificationList = [...notificationList];
+            return {
+                ...state,
+                notificationList : newNotificationList,
+                notificationFetchErr : ''
+            }
+        case 'NOTIFICATION_LIST_FAIL':
+            const err_msg = action.payload;
+            return {
+                ...state,
+                notificationFetchErr : err_msg
+            }
+        case 'IMAGE_OBJ_FETCHED':
+            const imageObj = action.payload;
+            return {
+                ...state,
+                imageObj,
+            }
         default :
             return state;
     }
@@ -35,8 +57,7 @@ const unMountNotificationBox = (notificationArr, notificationNum) => {
 }
 
 const addNotificationNum = (notificationArr, notificationNum) => {
-    /*const newNotObj = <NotificationBoxComponent key = { notificationNum } notificationNum = { notificationNum }
-                    unMountChild = { this.unMountChild }/>*/
+
     let isPresentFlag = false;
     let newNotificationArr = [];
 
