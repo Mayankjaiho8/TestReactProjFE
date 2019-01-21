@@ -267,3 +267,50 @@ export const AddNewPartBaseCustomerToServer = (submittedAddNewPartFormObj, submi
         .then(res => res.data)
         .then(imageObj => dispatch(getMovieDataObjActionCreator(imageObj)))
     }
+
+    const getQueryPointsActionCreator = ( queryPoints) => {
+        return {
+            type:'QUERY_POINTS_RECIEVED',
+            payload: queryPoints
+        }
+    }
+
+    const getLoadingQueryPointsActionCreator = () => {
+        return {
+            type:'LOADING_QUERY_POINTS'
+        }
+    }
+    export const getQueryPointsFromServer = () => dispatch => {
+        
+        const URL = 'http://localhost:8080/TestReactProj/webapi/testresource/querypoints'
+        
+        dispatch(getLoadingQueryPointsActionCreator());
+
+        axios.get(URL)
+            .then(res => res.data)
+            .then(queryPoints => dispatch(getQueryPointsActionCreator(queryPoints)))
+    }
+
+    const getQueryStoriesActionCreator = queryStories => {
+        return {
+            type:'QUERY_STORIES_RECIEVED',
+            payload: queryStories,
+        }
+    }
+
+    const getLoadingQueryStoriesActionCreator = () => {
+        return {
+            type:'LOADING_QUERY_STORIES'
+        }
+    }
+
+    export const getQueryStoriesFromServer = () => dispatch => {
+        
+        const URL = 'http://localhost:8080/TestReactProj/webapi/testresource/querystories'
+        
+        dispatch(getLoadingQueryStoriesActionCreator());
+
+        axios.get(URL)
+            .then(res => res.data)
+            .then(queryStories => dispatch(getQueryStoriesActionCreator(queryStories)))
+    }

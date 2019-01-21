@@ -1,0 +1,89 @@
+.query-story-point-container{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    min-height:80vh;
+}
+
+.query-story-box, .query-point-box{
+
+    border:1px solid dodgerblue;
+    border-radius:10px;
+    box-shadow: 1px 2px 16px rgba(30, 30, 30, 0.8);
+    margin : 10px 20px; 
+    padding: 0 20px 0 0;
+    min-width:220px;
+    position:relative;
+    margin-top:100px;
+}
+
+.query-story-box > ul, .query-point-box > ul{
+    margin:0;
+}
+
+.query-story-box > ul > li, .query-point-box > ul > li{
+    padding:10px 10px;
+}
+
+.query-story-box{
+    min-height:60vh;
+}
+
+.query-point-box{
+    min-height:40vh;
+}
+
+.loading-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:#f1f1f1;
+    opacity:0.8;
+
+}
+
+.flicker{
+    content:"";
+    width:40px;
+    height:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    border-radius:50%;
+    border-top:2px solid #333;
+    animation-name: flicker-rotate;
+    animation-duration: 0.8s;
+    animation-iteration-count: inifinite; 
+}
+
+@keyframes flicker-rotate{
+    from {
+        transform: rotate(0deg);
+    }
+
+    to{
+        
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width:600px){
+    .query-story-point-container{
+        display:block;
+        text-align:center;
+    }   
+
+    .query-story-box{
+        min-height:auto;
+        margin-top:10px;
+    }
+    
+    .query-point-box{
+        min-height:auto;
+        margin-top:20px;
+    }
+}

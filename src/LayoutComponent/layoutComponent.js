@@ -51,6 +51,7 @@ class LayoutComponent extends Component{
         }
     }
     render(){
+        console.log('inside layout')
         return(
             <Router>
                 <Route path ="/" render = {(props) => this.getLayoutComponent(props)} />

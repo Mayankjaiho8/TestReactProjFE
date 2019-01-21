@@ -1,0 +1,19 @@
+$background-color: #333;
+$text-color: #ddd;
+$h1-color : #329e7a;
+
+@mixin easeOut {
+    transition:0.4s ease-out
+}
+
+@function set-text-color($color){
+    @if($color == white){
+        @return #333;
+    }
+    @else if($color == $text-color){
+        @return $background-color;
+    }
+    @else {
+        @return #ddd;
+    }
+}

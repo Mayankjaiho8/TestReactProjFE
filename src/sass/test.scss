@@ -1,0 +1,41 @@
+
+@import "./config.scss";
+.h1-color{
+    color: $h1-color
+}
+.container{
+    background: lighten($background-color, 5); 
+    color:$text-color;
+    text-align:center;
+    padding:20px;
+
+    .nav-bar{
+        display:flex;
+        justify-content:center;
+        margin-top:10px;
+
+        a{
+            text-decoration: none;
+            padding:10px;
+            background:white;
+            color:set-text-color(white);
+            margin-left:5px;
+            @include easeOut;
+
+            &:hover{
+                background:darken($text-color, 10);
+                color:set-text-color($text-color);
+            }
+
+            &:first-child{
+                margin-left:0;
+            }
+        }
+    }
+
+    h1{
+        @extend .h1-color;
+        background: lighten(#68a0d8, 10);
+    }
+    
+}
